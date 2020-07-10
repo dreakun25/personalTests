@@ -200,7 +200,7 @@ window.addEventListener("DOMContentLoaded", UI.displayJobs);
 document.querySelector("#job-form").addEventListener("submit", (event) => {
   // Prevent actual submit
   event.preventDefault();
-
+  alert("clicked")
   // Get form values
   const title = document.querySelector("#title").value;
   const when = document.querySelector("#when").value;
