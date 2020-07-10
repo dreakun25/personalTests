@@ -226,7 +226,7 @@ document.querySelector("#job-form").addEventListener("submit", (event) => {
     UI.showAlert("Please fill in all fields", "danger");
   } else {
     // Instatiate job
-    const job = new Job(title, when, impo);
+    const job = new Job(title, when, impo, numb, checked);
 
     // Add Job to UI
     UI.addJobToList(job);
