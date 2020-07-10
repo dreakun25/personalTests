@@ -1,5 +1,3 @@
-if(document.readyState === "complete") {
-  preventDefault();
 // Job Class: Represents a Job
 class Job {
   constructor(title, when, impo, number, checked) {
@@ -23,6 +21,38 @@ class Job {
     } else {
       this.checked = checked;
     }
+  }
+}
+
+// Store Class: Handles Storage
+class Store {
+  static getJobs() {
+    let jobs;
+    if (localStorage.getItem("jobs") === null) {
+      jobs = [];
+    } else {
+      jobs = JSON.parse(localStorage.getItem("jobs"));
+    }
+
+    return jobs;
+  }
+
+  static addJob(job) {
+    const jobs = Store.getJobs();
+    jobs.push(job);
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+  }
+
+  static removeJob(number) {
+    const jobs = Store.getJobs();
+
+    jobs.forEach((job, index) => {
+      if (job.number === number) {
+        jobs.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem("jobs", JSON.stringify(jobs));
   }
 }
 
@@ -163,37 +193,7 @@ class UI {
   }
 }
 
-// Store Class: Handles Storage
-class Store {
-  static getJobs() {
-    let jobs;
-    if (localStorage.getItem("jobs") === null) {
-      jobs = [];
-    } else {
-      jobs = JSON.parse(localStorage.getItem("jobs"));
-    }
 
-    return jobs;
-  }
-
-  static addJob(job) {
-    const jobs = Store.getJobs();
-    jobs.push(job);
-    localStorage.setItem("jobs", JSON.stringify(jobs));
-  }
-
-  static removeJob(number) {
-    const jobs = Store.getJobs();
-
-    jobs.forEach((job, index) => {
-      if (job.number === number) {
-        jobs.splice(index, 1);
-      }
-    });
-
-    localStorage.setItem("jobs", JSON.stringify(jobs));
-  }
-}
 
 // Event: Display Jobs
 window.addEventListener("DOMContentLoaded", UI.displayJobs);
@@ -226,7 +226,7 @@ document.querySelector("#job-form").addEventListener("submit", (event) => {
     UI.showAlert("Please fill in all fields", "danger");
   } else {
     // Instatiate job
-    const job = new Job(title, when, impo, numb, checked);
+    const job = new Job(title, when, impo);
 
     // Add Job to UI
     UI.addJobToList(job);
@@ -275,7 +275,7 @@ document.querySelectorAll(".table-sortable th").forEach((headerCell) => {
 
 // calculating max number
 function max() {
-  
+  if(document.readyState === "complete") {
     let max = 0;
     let arr = document.querySelector("#job-list");
     for (let i = 0; i < arr.rows.length; i++) {
@@ -284,5 +284,5 @@ function max() {
       }
     }
     return max;
-  }
+  };
 }
