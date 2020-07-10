@@ -81,7 +81,7 @@ class UI {
             <td>${job.when}</td>
             <td class="text-high">${job.impo}</td>
             <td id="number">${job.number}</td>
-            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
+            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><br><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
             `;
     }
     if (job.impo === "Medium") {
@@ -90,7 +90,7 @@ class UI {
             <td>${job.when}</td>
             <td class="text-middle">${job.impo}</td>
             <td id="number">${job.number}</td>
-            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
+            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><br><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
             `;
     }
     if (job.impo === "Low") {
@@ -99,7 +99,7 @@ class UI {
             <td>${job.when}</td>
             <td class="text-low">${job.impo}</td>
             <td id="number">${job.number}</td>
-            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
+            <td><button class="btn btn-success btn-sm done"><i class="fas fa-check"></i></button><br><button class="btn btn-danger btn-sm delete"><i class="fas fa-minus"></i></button></td>
             `;
     }
 
