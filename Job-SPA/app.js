@@ -275,7 +275,7 @@ document.querySelectorAll(".table-sortable th").forEach((headerCell) => {
 
 // calculating max number
 function max() {
-  if(document.readyState === "complete") {
+  
     let max = 0;
     let arr = document.querySelector("#job-list");
     for (let i = 0; i < arr.rows.length; i++) {
@@ -284,5 +284,5 @@ function max() {
       }
     }
     return max;
-  };
+  
 }
