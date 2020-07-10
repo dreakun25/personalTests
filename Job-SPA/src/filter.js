@@ -2,6 +2,14 @@ function showFilter() {
   var opt = selectField.options[selectField.selectedIndex];
   const arr = document.getElementById("job-list");
   if (String(opt.value) === "Done") {
+    for (let i = 0; i < arr.rows.length; i++) {
+      let y = i + 1;
+      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
+      row.remove();
+      i--;
+    }
+    UI.displayJobs();
+
     for (let j = 0; j < arr.rows.length; j++) {
       let y = j + 1;
       let row = document.querySelector(`#job-list tr:nth-child(${y})`);
@@ -12,6 +20,13 @@ function showFilter() {
       }
     }
   } else if (String(opt.value) === "NotDone") {
+    for (let i = 0; i < arr.rows.length; i++) {
+      let y = i + 1;
+      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
+      row.remove();
+      i--;
+    }
+    UI.displayJobs();
     for (let j = 0; j < arr.rows.length; j++) {
       let y = j + 1;
       let row = document.querySelector(`#job-list tr:nth-child(${y})`);
