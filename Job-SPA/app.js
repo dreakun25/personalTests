@@ -1,4 +1,5 @@
 if(document.readyState === "complete") {
+  preventDefault();
 // Job Class: Represents a Job
 class Job {
   constructor(title, when, impo, number, checked) {
