@@ -294,6 +294,6 @@ document.querySelector("#clear").addEventListener("click", (e) =>{
   let result = window.confirm("Do you want to clear all app data?");
   if(result){
     localStorage.clear();
-    location.reload();
+    location.reload(true);
   }
 });
