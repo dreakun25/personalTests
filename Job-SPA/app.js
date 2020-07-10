@@ -1,3 +1,4 @@
+if(document.readyState === "complete") {
 // Job Class: Represents a Job
 class Job {
   constructor(title, when, impo, number, checked) {
@@ -200,7 +201,6 @@ window.addEventListener("DOMContentLoaded", UI.displayJobs);
 document.querySelector("#job-form").addEventListener("submit", (event) => {
   // Prevent actual submit
   event.preventDefault();
-  alert("clicked")
   // Get form values
   const title = document.querySelector("#title").value;
   const when = document.querySelector("#when").value;
@@ -274,7 +274,7 @@ document.querySelectorAll(".table-sortable th").forEach((headerCell) => {
 
 // calculating max number
 function max() {
-  if(document.readyState === "complete") {
+  
     let max = 0;
     let arr = document.querySelector("#job-list");
     for (let i = 0; i < arr.rows.length; i++) {
@@ -283,5 +283,5 @@ function max() {
       }
     }
     return max;
-  };
+  }
 }
