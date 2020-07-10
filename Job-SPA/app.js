@@ -199,7 +199,7 @@ class UI {
 window.addEventListener("DOMContentLoaded", UI.displayJobs);
 
 // Event: Add a Job
-document.querySelector("#job-form").addEventListener("submit", (event) => {
+document.querySelector(".formsubmit").addEventListener("click", (event) => {
   // Prevent actual submit
   event.preventDefault();
   // Get form values
