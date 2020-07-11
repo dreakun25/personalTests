@@ -107,17 +107,14 @@ class UI {
   }
 
   static deleteJob(el) {
-    let result = window.confirm("Want to delete ToDo?");
-    if (result) {
-      el.parentElement.parentElement.remove();
-      // Remove job from store
-      Store.removeJob(
-        parseInt(el.parentElement.previousElementSibling.textContent)
-      );
+    el.parentElement.parentElement.remove();
+    // Remove job from store
+    Store.removeJob(
+      parseInt(el.parentElement.previousElementSibling.textContent)
+    );
 
-      //  Show success message
-      UI.showAlert("ToDo removed", "success");
-    }
+    //  Show success message
+    UI.showAlert("ToDo removed", "success");
   }
 
   // Done Job
@@ -193,8 +190,30 @@ class UI {
   }
 }
 
+class CustomAlert {
+  constructor(message) {
+    this.dialog = message;
+  }
 
+  render = function (dialog) {
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const dialogoverlay = document.getElementById("dialogboxoverlay");
+    const dialogbox = document.getElementById("dialogbox");
+    const message = dialog;
 
+    dialogoverlay.style.display = "block";
+    dialogoverlay.style.height = winH + "px";
+    dialogbox.style.left = winW / 2 - 550 * 0.5 + "px";
+    dialogbox.style.top = "100px";
+    dialogbox.style.display = "block";
+
+    document.getElementById("dialogboxheader").innerHTML = "Are you sure?";
+    document.getElementById("dialogboxbody").innerHTML = message;
+    document.getElementById("dialogboxfooter").innerHTML =
+      '<button class="btn btn-sm btn-success" id="yes">Yes</button> <button class="btn btn-sm btn-danger" id="no">No</button>';
+  };
+}
 // Event: Display Jobs
 window.addEventListener("DOMContentLoaded", UI.displayJobs);
 
@@ -250,7 +269,15 @@ document.querySelector(".btn-parent").addEventListener("click", (event) => {
 document.querySelector("#job-list").addEventListener("click", (e) => {
   if (e.target.classList.contains("delete")) {
     //   Remove job from UI
-    UI.deleteJob(e.target);
+    let confirm = new CustomAlert();
+    confirm.render("Do you want to delete ToDo?");
+    document.getElementById("yes").addEventListener("click", () => {
+      ok();
+      UI.deleteJob(e.target);
+    });
+    document.getElementById("no").addEventListener("click", () => {
+      ok();
+    });
   }
 });
 
@@ -275,25 +302,35 @@ document.querySelectorAll(".table-sortable th").forEach((headerCell) => {
 
 // calculating max number
 function max() {
-  
-    let max = 0;
-    let arr = document.querySelector("#job-list");
-    for (let i = 0; i < arr.rows.length; i++) {
-      if (max < parseInt(arr.rows[i].cells[3].innerHTML)) {
-        max = parseInt(arr.rows[i].cells[3].innerHTML);
-      }
+  let max = 0;
+  let arr = document.querySelector("#job-list");
+  for (let i = 0; i < arr.rows.length; i++) {
+    if (max < parseInt(arr.rows[i].cells[3].innerHTML)) {
+      max = parseInt(arr.rows[i].cells[3].innerHTML);
     }
-    return max;
-  
+  }
+  return max;
 }
-
 
 // clear local storage
 
-document.querySelector("#clear").addEventListener("click", (e) =>{
-  let result = window.confirm("Do you want to clear all app data?");
-  if(result){
-    localStorage.clear();
-    location.reload(true);
-  }
+document.querySelector("#clear").addEventListener("click", (e) => {
+  let confirm = new CustomAlert();
+    confirm.render("Do you want to clear all app data?");
+    document.getElementById("yes").addEventListener("click", () => {
+      ok();
+      localStorage.clear();
+      location.reload(true);
+    });
+    document.getElementById("no").addEventListener("click", () => {
+      ok();
+    });
+    
 });
+
+
+
+function ok() {
+  document.getElementById("dialogboxoverlay").style.display = "none";
+  document.getElementById("dialogbox").style.display = "none";
+}

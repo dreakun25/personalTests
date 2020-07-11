@@ -37,3 +37,33 @@
 .checked{
     text-decoration: line-through;
 }
+
+
+
+
+/* dialog box styles */
+#dialogboxoverlay{
+    display: none;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 10;
+}
+
+#dialogbox{
+    display: none;
+    position: fixed;
+    background: #000;
+    border-radius: 7px;
+    width: 550px;
+    height: 250px;
+    z-index: 10;
+    text-align: center;
+}
+
+#dialogboxheader, #dialogboxbody, #dialogboxfooter{
+    margin-top: 7%;
+}
