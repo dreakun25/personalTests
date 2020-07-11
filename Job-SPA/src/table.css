@@ -1,3 +1,9 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
 .table-sortable th{
     cursor: pointer;
 }

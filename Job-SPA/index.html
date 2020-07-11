@@ -16,6 +16,8 @@
     <link rel="shortcut icon" href="./img/favicon.ico">
     <!-- table sort -->
     <link rel="stylesheet" href="./src/table.css">
+    <!-- fonts.google.com -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>MyToDoList App</title>
 </head>
 <body>
@@ -31,12 +33,12 @@
         <h1 class="display-4 text-center"><i class="fas fa-clipboard-list text-primary"></i>My<span class="text-primary">ToDo</span>List</h1>
         <form id="job-form">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Title:</label>
                 <input type="text" id="title" class="form-control">
             </div>
             
             <div class="form-group">
-                <label for="when">When</label>
+                <label for="when">When:</label>
                 <input type="datetime-local" id="when" class="form-control">
             </div>
             <div class="form-group">
@@ -59,7 +61,7 @@
                 <option value="Done">Done</option>
                 <option value="NotDone">To Do</option>
             </select>
-            <div class="btn btn-small btn-outline-primary ml-3" id="filterbtn">filter</div>
+            <div class="btn btn-small btn-outline-primary ml-3" id="filterbtn">Filter</div>
         </div>
         <table class="table table-striped mt-5 mr-5 table-sortable">
             <thead>
@@ -68,7 +70,8 @@
                     <th>When</th>
                     <th>Importance</th>
                     <th>Number</th>
-                    <th></th>
+                    <th>Check</th>
+                    <th>Remove</th>
                 </tr>
                 <tbody id="job-list"></tbody>
             </thead>
@@ -82,7 +85,7 @@
     </div>
 
     <footer class="text-center font-small">
-        Version 2.4.3 || &copy;2020 Fotis Andreas Collet
+        Version 2.4.4 || &copy;2020 Fotis Andreas Collet
     </footer>
 
     <script src="./src/sortTable.js"></script>
