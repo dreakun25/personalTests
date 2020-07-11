@@ -174,11 +174,19 @@ class UI {
 
   static showAlert(message, className) {
     const div = document.createElement("div");
-    div.className = `alert alert-${className}`;
+    div.className = `alert alert-${className} custom-alert-start`;
     div.appendChild(document.createTextNode(message));
     const container = document.querySelector(".container");
     const form = document.querySelector("#job-form");
     container.insertBefore(div, form);
+    setTimeout(() => {
+      div.classList.remove("custom-alert-start");
+      div.classList.add("custom-alert-middle");
+    }, 200);
+    setTimeout(() => {
+      div.classList.remove("custom-alert-middle");
+      div.classList.add("custom-alert-start");
+    }, 2800);
 
     //  Vanish in 3 seconds
     setTimeout(() => document.querySelector(".alert").remove(), 3000);

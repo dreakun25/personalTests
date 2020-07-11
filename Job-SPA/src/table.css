@@ -67,3 +67,19 @@
 #dialogboxheader, #dialogboxbody, #dialogboxfooter{
     margin-top: 7%;
 }
+
+
+/* alert style */
+.custom-alert-start{
+    transition: 300ms;
+    padding: 0;
+    height: 0px;
+    overflow: hidden;
+}
+
+.custom-alert-middle{
+    transition: 300ms;
+    height: 100%;
+    overflow: hidden;
+}
+
