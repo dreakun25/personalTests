@@ -12,14 +12,19 @@ function filter() {
     UI.clearTable();
     UI.displayJobs();
   } else {
+    let count = 0;
     UI.clearTable();
       jobs.forEach((job) => {
         let checkOne = checkImpo(job, optOne);
         let checkTwo =checkState(job, optTwo);
         if(checkOne && checkTwo){
           UI.addJobToList(job);
+          count++;
         }
       });
+      if(count === 0){
+        UI.clearTable();
+      }
   }
 }
 
