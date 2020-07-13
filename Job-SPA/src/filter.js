@@ -65,9 +65,9 @@ function showFilter() {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const selectField = document.getElementById("selectField");
-  const filterbtn = document.getElementById("filterbtn");
 
-  filterbtn.addEventListener("click", showFilter);
-});
+
+const selectField = document.getElementById("selectField");
+const arr = document.getElementById("job-list");
+
+selectField.addEventListener("change", showFilter);
