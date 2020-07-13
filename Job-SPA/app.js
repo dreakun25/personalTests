@@ -196,6 +196,15 @@ class UI {
     document.querySelector("#title").value = "";
     document.querySelector("#when").value = "";
   }
+
+  static clearTable(){
+    let table = document.querySelector("#job-list");
+    while(table.firstChild){
+      table.firstChild.remove();
+    }
+  }
+
+
 }
 
 class CustomAlert {

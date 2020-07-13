@@ -1,88 +1,54 @@
-const selectFieldFirst = document.getElementById("selectFieldOne");
-const selectFieldSecond = document.getElementById("selectFieldTwo");
+const selectFieldOne = document.getElementById("selectFieldOne");
+const selectFieldTwo = document.getElementById("selectFieldTwo");
 const list = document.getElementById("job-list");
 
-function checkState(r) {
-  let result = false;
-  let row = list.rows[r].classList.value;
-  if (String(row) === "checked") {
-    result = true;
-  }
-  return result;
-}
 
-function checkImpo(r, opt) {
-  let result = false;
-  let row = list.rows[r].cells[2].textContent;
-  if (String(row) === String(opt.textContent)) {
-    result = true;
-  }
-  return result;
-}
 
 function filter() {
-  let optOne = selectFieldFirst.options[selectFieldFirst.selectedIndex];
-  let optTwo = selectFieldSecond.options[selectFieldSecond.selectedIndex];
-  if (String(optOne.value) === "All" && String(optTwo.value) === "None") {
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      row.remove();
-      i--;
-    }
+  let optOne = selectFieldOne.options[selectFieldOne.selectedIndex].value;
+  let optTwo = selectFieldTwo.options[selectFieldTwo.selectedIndex].value;
+  const jobs = Store.getJobs();
+  if (optOne === "All" && optTwo === "None") {
+    UI.clearTable();
     UI.displayJobs();
-  }
-  if (String(optTwo.value) === "Done") {
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      row.remove();
-      i--;
-    }
-    UI.displayJobs();
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      if (!checkState(i)) {
-        row.remove();
-        i--;
-      }
-    }
-  } else if (String(optTwo.value) === "NotDone") {
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      row.remove();
-      i--;
-    }
-    UI.displayJobs();
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      if (checkState(i)) {
-        row.remove();
-        i--;
-      }
-    }
-  }
-  if (String(optOne.value) !== "All") {
-    for (let i = 0; i < list.rows.length; i++) {
-      let y = i + 1;
-      let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-      row.remove();
-      i--;
-    }
-    UI.displayJobs();
-    for (let i = 0; i < list.rows.length; i++) {
-        let y = i + 1;
-        let row = document.querySelector(`#job-list tr:nth-child(${y})`);
-        if (!checkImpo(i, optOne)) {
-          row.remove();
-          i--;
+  } else {
+    UI.clearTable();
+      jobs.forEach((job) => {
+        let checkOne = checkImpo(job, optOne);
+        let checkTwo =checkState(job, optTwo);
+        if(checkOne && checkTwo){
+          UI.addJobToList(job);
         }
-      }
+      });
   }
 }
 
-selectFieldFirst.addEventListener("change", filter);
-selectFieldSecond.addEventListener("change", filter);
+
+function checkImpo(job, imp){
+  let result = false;
+  if(imp === "All"){
+    result = true;
+  } else if(job.impo === String(imp)){
+    result = true;
+  }
+  return result;
+}
+
+function checkState(job, state){
+  let result = false;
+  if(state === "None"){
+    result = true;
+  }else if(state === "checked"){
+    if(job.checked === 1){
+      result = true;
+    }
+  }else if(state === "NotDone"){
+    if(job.checked === -1){
+      result = true;
+    }
+  }
+  return result;
+}
+
+selectFieldOne.addEventListener("change", filter);
+selectFieldTwo.addEventListener("change", filter);
