@@ -81,11 +81,13 @@ body{
     padding: 0;
     height: 0px;
     overflow: hidden;
+    text-align: center;
 }
 
 .custom-alert-middle{
     transition: 300ms;
     height: 100%;
     overflow: hidden;
+    text-align: center;
 }
 
